@@ -1,10 +1,14 @@
+// The Game class contains the methods for selecting and naming characters
+
 class Game {
     var numberOfCharacter = 0
     var characterType = ["Un Combattant", "Un Nain", "Un Colosse", "Un Mage"]
    
     var characterChoosenPlayerOne : [String] = []
     var characterChoosenPlayerTwo : [String] = []
-    
+
+// The first method for the first player
+
     func playerOneCharacterChoice() {
         
         print("Bonjour joueur 1, entrez votre nom")
@@ -65,6 +69,9 @@ class Game {
                         
                     }
                    }
+
+// An array to summarize the choice of the characters of the first player
+
             if numberOfCharacter == 3{
                 print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayerOne)")
             }
@@ -72,6 +79,9 @@ class Game {
         }
         
 }
+
+// The second method for the second player 
+
     func playerTwoCharacterChoice() {
         
         print("Bonjour joueur 2, entrez votre nom")
@@ -127,6 +137,8 @@ class Game {
                     
                 }
             }
+ // An array to summarize the choice of the characters of the second player
+            
             if numberOfCharacter == 3{
                 print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayerTwo)")
             }
@@ -138,9 +150,12 @@ class Game {
     
 }
 
+// The beginning of the first player game
+
 var newGamePlayerOne = Game ()
 newGamePlayerOne.playerOneCharacterChoice()
 
+// The beginning of the second player game
 
 var newGamePlayerTwo = Game ()
 newGamePlayerTwo.playerTwoCharacterChoice()
