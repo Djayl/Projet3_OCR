@@ -1,57 +1,149 @@
-class NewGame {
-var numberOfCharacter = 0
-var characterType = ["Un Combattant", "Un Nain", "Un Colosse", "Un Mage"]
-
-var monTableauVide: [String] = []
-
-func chooseCharacter() {
-    print("Bonjour joueur 1, entrez votre nom")
-    if let player1Name = readLine(){
-        print("Bonjour \(player1Name)")
-    }
-
-print("Choisis tes personnages"
-    + "\n1. Un nain"
-    + "\n2. Un combattant"
-    + "\n3. Un colosse"
-    + "\n4. Un mage")
-while numberOfCharacter < 3{
-for _ in 1...3{
+class Game {
+    var numberOfCharacter = 0
+    var characterType = ["Un Combattant", "Un Nain", "Un Colosse", "Un Mage"]
+   
+    var characterChoosenPlayerOne : [String] = []
+    var characterChoosenPlayerTwo : [String] = []
     
-if let character = readLine(){
-
-    switch character {
+    func playerOneCharacterChoice() {
         
-    case "1": print("tu as choisis un nain")
-        numberOfCharacter += 1
-    monTableauVide.append("nain")
+        print("Bonjour joueur 1, entrez votre nom")
+        if let playerOneName = readLine(){
+            print("Bonjour \(playerOneName)")
+        }
         
-    case "2": print("tu as choisis un combattant")
-        numberOfCharacter += 1
-    monTableauVide.append("combattant")
+        print("Choisissez vos personnages"
+            + "\n1. Un nain"
+            + "\n2. Un combattant"
+            + "\n3. Un colosse"
+            + "\n4. Un mage")
         
-    case "3": print("tu as choisis un colosse")
-        numberOfCharacter += 1
-    monTableauVide.append("colosse")
+        while numberOfCharacter < 3 {
+            
+            
+                if let character = readLine(){
+                    
+                    switch character {
+                        
+                    case "1": print("Vous avez choisis un nain")
+                    numberOfCharacter += 1
+                    characterChoosenPlayerOne.append(characterType[1])
+                        print("Nommez votre nain")
+                    if let dwarfPlayerOne = readLine() {
+                        print("Votre nain se nomme : \(dwarfPlayerOne)")
+                        }
+            
+                        
+                    case "2": print("Vous avez choisis un combattant")
+                    numberOfCharacter += 1
+                    characterChoosenPlayerOne.append(characterType[0])
+                        print("Nommez votre combattant")
+                    if let fighterPlayerOne = readLine() {
+                        print("Votre combattant se nomme : \(fighterPlayerOne)")
+                        }
+                  
+                        
+                    case "3": print("Vous avez choisis un colosse")
+                    numberOfCharacter += 1
+                    characterChoosenPlayerOne.append(characterType[2])
+                        print("Nommez votre colosse")
+                    if let colossusPlayerOne = readLine(){
+                        print("Votre colosse se nomme : \(colossusPlayerOne)")
+                        }
+                   
+                        
+                    case "4": print("Vous avez choisis un mage")
+                    numberOfCharacter += 1
+                    characterChoosenPlayerOne.append(characterType[3])
+                        print("Nommez votre mage")
+                    if let magusPlayerOne = readLine(){
+                        print("Votre mage se nomme : \(magusPlayerOne)")
+                        }
+                   
+                        
+                    default: print("Je ne comprends pas")
+                        
+                    }
+                   }
+            if numberOfCharacter == 3{
+                print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayerOne)")
+            }
+            
+        }
         
-    case "4": print("tu as choisis un mage")
-        numberOfCharacter += 1
-    monTableauVide.append("mage")
+}
+    func playerTwoCharacterChoice() {
         
-    default: print("je ne comprends pas")
+        print("Bonjour joueur 2, entrez votre nom")
+        if let playerTwoName = readLine(){
+            print("Bonjour \(playerTwoName)")
+        }
+        
+        print("Choisissez vos personnages"
+            + "\n1. Un nain"
+            + "\n2. Un combattant"
+            + "\n3. Un colosse"
+            + "\n4. Un mage")
+        
+        while numberOfCharacter < 3 {
+            
+            if let character = readLine(){
+                
+                switch character {
+                    
+                case "1": print("Vous avez choisis un nain")
+                numberOfCharacter += 1
+                characterChoosenPlayerTwo.append(characterType[1])
+                print("Nommez votre nain")
+                if let dwarfPlayerTwo = readLine() {
+                    print("Votre nain se nomme : \(dwarfPlayerTwo)")
+                    }
+                    
+                case "2": print("Vous avez choisis un combattant")
+                numberOfCharacter += 1
+                characterChoosenPlayerTwo.append(characterType[0])
+                print("Nommez votre combattant")
+                if let fighterPlayerTwo = readLine() {
+                    print("Votre combattant se nomme : \(fighterPlayerTwo)")
+                    }
+                    
+                case "3": print("Vous avez choisis un colosse")
+                numberOfCharacter += 1
+                characterChoosenPlayerTwo.append(characterType[2])
+                print("Nommez votre colosse")
+                if let colossusPlayerTwo = readLine(){
+                    print("Votre colosse se nomme : \(colossusPlayerTwo)")
+                    }
+                    
+                case "4": print("Vous avez choisis un mage")
+                numberOfCharacter += 1
+                characterChoosenPlayerTwo.append(characterType[3])
+                print("Nommez votre mage")
+                if let magusPlayerTwo = readLine(){
+                    print("Votre mage se nomme : \(magusPlayerTwo)")
+                    }
+                    
+                default: print("Je ne comprends pas")
+                    
+                }
+            }
+            if numberOfCharacter == 3{
+                print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayerTwo)")
+            }
+            
+        }
+        
+        
+    }
     
-    }
-    }
-    }
-}
-    if numberOfCharacter == 3{
-    print("Tu as choisis tes 3 personnages: \(monTableauVide)")
-    }
-}
 }
 
-var aNewGame1 = NewGame()
-aNewGame1.chooseCharacter()
+var newGamePlayerOne = Game ()
+newGamePlayerOne.playerOneCharacterChoice()
+
+
+var newGamePlayerTwo = Game ()
+newGamePlayerTwo.playerTwoCharacterChoice()
 
 
 
