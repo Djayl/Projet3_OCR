@@ -13,68 +13,75 @@ class Game {
     func playerCharacterChoice(playerIndex: Int) {
         
         if let playerName = readLine(){
-            print("Bonjour \(playerName)")
+            print("Bonjour \(playerName), nommez votre équipe:")
         }
         
-        print("Choisissez vos personnages"
-            + "\n1. \(characterType[0])"
-            + "\n2. \(characterType[1])"
-            + "\n3. \(characterType[2])"
-            + "\n4. \(characterType[3])")
+        if let playerTeam = readLine(){
+            print("Votre équipe se nomme: \(playerTeam).")
+        }
+        
+        print("Choisissez vos personnages:")
         
         while numberOfCharacter < 3 {
-            
-            
+            for (index, value) in characterType.enumerated() {
+                print("\(index + 1): \(value)")
+            }
             if let character = readLine(){
                 
                 switch character {
                     
-                case "1": print("Vous avez choisis \(characterType[0])")
-                numberOfCharacter += 1
-                characterType.remove(at: 0)
-                characterChoosenPlayer.append(characterType[1])
-                print("Nommez votre combattant")
-                if let fighterPlayer = readLine() {
-                    print("Votre combattant se nomme : \(fighterPlayer)")
-                    }
-             
                     
-                case "2": print("Vous avez choisis \(characterType[1])")
+                case "1": print("Vous avez choisis un \(characterType[0])")
                 numberOfCharacter += 1
                 characterChoosenPlayer.append(characterType[0])
-                print("Nommez votre nain")
+                print("Nommez votre \(characterType[0])")
+                if let fighterPlayer = readLine() {
+                    print("Votre combattant se nomme : \(fighterPlayer)")
+                }
+                
+                characterType.remove(at: 0)
+                    
+                case "2": print("Vous avez choisis un \(characterType[1])")
+                numberOfCharacter += 1
+                characterChoosenPlayer.append(characterType[1])
+                print("Nommez votre \(characterType[1])")
                 if let dwarfPlayer = readLine() {
-                    print("Votre combattant se nomme : \(dwarfPlayer)")
-                    }
+                    print("Votre nain se nomme : \(dwarfPlayer)")
+                }
+                
+                characterType.remove(at: 1)
                     
-                    
-                case "3": print("Vous avez choisis \(characterType[2])")
+                case "3": print("Vous avez choisis un \(characterType[2])")
                 numberOfCharacter += 1
                 characterChoosenPlayer.append(characterType[2])
-                print("Nommez votre colosse")
+                print("Nommez votre \(characterType[2])")
                 if let colossusPlayer = readLine(){
                     print("Votre colosse se nomme : \(colossusPlayer)")
-                    }
+                }
+                
+                characterType.remove(at: 2)
                     
-                    
-                case "4": print("Vous avez choisis \(characterType[3])")
+                case "4": print("Vous avez choisis un \(characterType[3])")
                 numberOfCharacter += 1
                 characterChoosenPlayer.append(characterType[3])
-                print("Nommez votre mage")
+                print("Nommez votre \(characterType[3])")
                 if let magusPlayer = readLine(){
                     print("Votre mage se nomme : \(magusPlayer)")
-                    }
-                    
+                }
+                
+                characterType.remove(at: 3)
                     
                 default: print("Je ne comprends pas")
                     
                 }
+                
             }
             if numberOfCharacter == 3{
-                print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayer)")
+                print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayer).")
+                
             }
             if numberOfCharacter < 3{
-                print("Choisissez un autre personnage")
+                print("Choisissez un autre personnage:")
             }
             
         }
@@ -83,9 +90,7 @@ class Game {
 }
 
 
-    
-
-print("Bonjour joueur 1, entrez votre nom")
+print("Bonjour joueur 1, entrez votre nom:")
 var playerOne = Game()
 playerOne.playerCharacterChoice(playerIndex:1)
 
