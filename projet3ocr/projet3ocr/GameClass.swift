@@ -74,7 +74,7 @@ class Game {
                     }
             }
             if numberOfCharacter == 3{
-                print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayer).")
+                print("Vous avez choisis vos 3 personnages: \(characterChoosenPlayer), ils se nomment: \(characterName).")
             }
             if numberOfCharacter < 3{
                 print("Choisissez un autre personnage:")
