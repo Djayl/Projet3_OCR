@@ -1,3 +1,12 @@
+//
+//  Character.swift
+//  projet3ocr
+//
+//  Created by MacBook DS on 14/03/2018.
+//  Copyright © 2018 Djilali Sakkar. All rights reserved.
+//
+
+import Foundation
 // Enumeration for the type of the characters
 enum CharacterType {
     case Dwarf, Colossus, Magus, Fighter
@@ -15,11 +24,13 @@ class Character {
     init(type: CharacterType){
         self.type = type
         
+        
         switch self.type {
         case .Fighter:
             self.life = 100
             self.damage = 10
             self.cure = 0
+            
         case .Colossus:
             self.life = 150
             self.damage = 5
@@ -32,19 +43,20 @@ class Character {
             self.life = 50
             self.damage = 0
             self.cure = 10
+            
         }
     }
     
-// The character attacks an opponent
+    
+    // Creation of the attack function, one for all the characters
     
     func attack(opponent: Character){
         opponent.life -= damage
-        print("\(type), vous attaquez le \(opponent.type).")
-        print("\(opponent.type), vous perdez \(damage) points de vie.")
-        print("Votre vie est de \(opponent.life) points.")
+        print("\(type), vous attaquez le \(opponent.type)")
+        print("\(opponent.type), vous perdez \(damage) points de vie")
+        print("Votre vie est de \(opponent.life) points")
+        
     }
-    
-// The Magus heals his comrades
     
     func Healing(comrade: Character) {
         if comrade.life > 0 && type == .Magus{
@@ -55,5 +67,6 @@ class Character {
         }else if type != .Magus{
             print("Je ne suis pas un Mage, je ne peux rien pour vous.")
         }
+        
     }
 }

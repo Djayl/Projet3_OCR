@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01A159A20599A7100309B69 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A159920599A7100309B69 /* Character.swift */; };
+		F01A159C20599AE700309B69 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A159B20599AE700309B69 /* Game.swift */; };
 		F026E6C1203DE60100405F0B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026E6C0203DE60100405F0B /* main.swift */; };
-		F06D58CE2041C0840080789D /* GameClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D58CD2041C0840080789D /* GameClass.swift */; };
-		F0FED8F8205000EF00C9F6A9 /* CharacterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FED8F7205000EF00C9F6A9 /* CharacterClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +25,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F01A159920599A7100309B69 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		F01A159B20599AE700309B69 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F026E6BD203DE60100405F0B /* projet3ocr */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = projet3ocr; sourceTree = BUILT_PRODUCTS_DIR; };
 		F026E6C0203DE60100405F0B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		F06D58CD2041C0840080789D /* GameClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameClass.swift; path = ../../GameClass.swift; sourceTree = "<group>"; };
-		F0FED8F7205000EF00C9F6A9 /* CharacterClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +61,9 @@
 		F026E6BF203DE60100405F0B /* projet3ocr */ = {
 			isa = PBXGroup;
 			children = (
-				F0FED8F7205000EF00C9F6A9 /* CharacterClass.swift */,
-				F06D58CD2041C0840080789D /* GameClass.swift */,
 				F026E6C0203DE60100405F0B /* main.swift */,
+				F01A159920599A7100309B69 /* Character.swift */,
+				F01A159B20599AE700309B69 /* Game.swift */,
 			);
 			path = projet3ocr;
 			sourceTree = "<group>";
@@ -126,9 +126,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06D58CE2041C0840080789D /* GameClass.swift in Sources */,
-				F0FED8F8205000EF00C9F6A9 /* CharacterClass.swift in Sources */,
 				F026E6C1203DE60100405F0B /* main.swift in Sources */,
+				F01A159C20599AE700309B69 /* Game.swift in Sources */,
+				F01A159A20599A7100309B69 /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
