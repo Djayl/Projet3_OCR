@@ -8,15 +8,16 @@
 
 import Foundation
 class Game {
-    var numberOfCharacter = 0
-    var characterType = ["combattant", "nain", "colosse", "mage"]
-    
-    var characterTypesChoosenForPlayer1 : [String] = []
-    var characterTypesChoosenForPlayer2 : [String] = []
-    var characterNamesChoosenForPlayer1 : [String] = []
-    var characterNamesChoosenForPlayer2 : [String] = []
+
     
     func playerCharacterChoice(playerIndex: Int) {
+        var numberOfCharacter = 0
+        var characterType = ["combattant", "nain", "colosse", "mage"]
+        
+        var characterTypesChoosenForPlayer1 : [String] = []
+        var characterTypesChoosenForPlayer2 : [String] = []
+        var characterNamesChoosenForPlayer1 : [String] = []
+        var characterNamesChoosenForPlayer2 : [String] = []
         
         if let playerName = readLine(){
             print("Bonjour \(playerName), nommez votre équipe:")
@@ -28,7 +29,7 @@ class Game {
         
         print("Choisissez vos personnages:")
         
-        while numberOfCharacter < 3 {
+        repeat {
             for (index, value) in characterType.enumerated() {
                 print("\(index + 1): \(value)")
             }
@@ -46,11 +47,13 @@ class Game {
                 }
                 print("Nommez votre \(characterType[0])")
                 if let fighterPlayer = readLine() {
-                    print("Votre combattant se nomme : \(fighterPlayer)")
+                    print("Votre \(characterType[0]) se nomme : \(fighterPlayer)")
                     if playerIndex == 1{
                         characterNamesChoosenForPlayer1.append(fighterPlayer)
                     }else if playerIndex == 2{
                         characterNamesChoosenForPlayer2.append(fighterPlayer)
+                    }else{
+                        print("choisis un autre nom")
                     }
                 }
                 characterType.remove(at: 0)
@@ -64,7 +67,7 @@ class Game {
                 }
                 print("Nommez votre \(characterType[1])")
                 if let dwarfPlayer = readLine() {
-                    print("Votre nain se nomme : \(dwarfPlayer)")
+                    print("Votre \(characterType[1]) se nomme : \(dwarfPlayer)")
                     if playerIndex == 1{
                         characterNamesChoosenForPlayer1.append(dwarfPlayer)
                     } else if playerIndex == 2{
@@ -82,7 +85,7 @@ class Game {
                 }
                 print("Nommez votre \(characterType[2])")
                 if let colossusPlayer = readLine(){
-                    print("Votre colosse se nomme : \(colossusPlayer)")
+                    print("Votre \(characterType[2]) se nomme : \(colossusPlayer)")
                     if playerIndex == 1{
                         characterNamesChoosenForPlayer1.append(colossusPlayer)
                     } else if playerIndex == 2{
@@ -100,7 +103,7 @@ class Game {
                 }
                 print("Nommez votre \(characterType[3])")
                 if let magusPlayer = readLine(){
-                    print("Votre mage se nomme : \(magusPlayer)")
+                    print("Votre \(characterType[3]) se nomme : \(magusPlayer)")
                     if playerIndex == 1{
                         characterNamesChoosenForPlayer1.append(magusPlayer)
                     } else if playerIndex == 2{
@@ -112,18 +115,19 @@ class Game {
                 default: print("Je ne comprends pas")
                     
                 }
-                
+            
             }
             if numberOfCharacter < 3{
                 print("Choisissez un autre personnage:")
             }
-            
+        
             if numberOfCharacter == 3 && playerIndex == 1{
                 print("Vous avez choisis vos 3 personnages: \(characterTypesChoosenForPlayer1), ils se nomment: \(characterNamesChoosenForPlayer1).")
             } else if numberOfCharacter == 3 && playerIndex == 2{
                 print("Vous avez choisis vos 3 personnages: \(characterTypesChoosenForPlayer2), ils se nomment: \(characterNamesChoosenForPlayer2).")
             }
             
-        }
-    }
+        
+    } while numberOfCharacter < 3
+}
 }
