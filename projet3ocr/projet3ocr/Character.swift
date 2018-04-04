@@ -8,8 +8,12 @@
 
 import Foundation
 // Enumeration for the type of the characters
-enum CharacterType {
-    case Dwarf, Colossus, Magus, Fighter
+// Enumeration for the type of the characters
+enum CharacterType : String {
+    case Dwarf = "Dwarf"
+    case Colossus = "Colossus"
+    case Magus = "Magus"
+    case Fighter = "Fighter"
 }
 
 // Creation of the class Character
@@ -17,13 +21,14 @@ enum CharacterType {
 class Character {
     
     var cure: Int
-    let type: CharacterType
+    var type: CharacterType
     var damage: Int
     var life: Int
+    let name: String
     
-    init(type: CharacterType){
+    init(name: String, type: CharacterType){
         self.type = type
-        
+        self.name = name
         
         switch self.type {
         case .Fighter:
