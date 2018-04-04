@@ -8,31 +8,44 @@
 
 import Foundation
 class Game {
-    var characterType = ["combattant", "nain", "colosse", "mage"]
+    
     var numberOfCharacter = 0
-    var characterTypesChoosenForPlayer1 : [String] = []
-    var characterTypesChoosenForPlayer2 : [String] = []
-    var characterNamesChoosenForPlayer1 : [String] = []
-    var characterNamesChoosenForPlayer2 : [String] = []
+    var characterChoosenForPlayer1 : [Character] = []
+    var characterChoosenForPlayer2 : [Character] = []
+    let characterType = ["combattant", "nain", "colosse", "mage"]
+    var player1Name: [String] = []
+    var player2Name: [String] = []
+    var player1TeamName: [String] = []
+    var player2TeamName: [String] = []
     
     
     
     func playerCharacterChoice(playerIndex: Int) {
         var numberOfCharacter = 0
-        var characterType = ["combattant", "nain", "colosse", "mage"]
-        
+        let characterType = ["combattant", "nain", "colosse", "mage"]
         
         if let playerName = readLine(){
             print("Bonjour \(playerName), nommez votre équipe:")
+            if playerIndex == 1{
+                player1Name.append(playerName)
+            } else if playerIndex == 2{
+                player2Name.append(playerName)
+            }
         }
         
         if let playerTeam = readLine(){
             print("Votre équipe se nomme: \(playerTeam).")
+            if playerIndex == 1{
+                player1TeamName.append(playerTeam)
+            } else if playerIndex == 2{
+                player2TeamName.append(playerTeam)
+            }
         }
         
         print("Choisissez vos personnages:")
         
         repeat {
+            
             for (index, value) in characterType.enumerated() {
                 print("\(index + 1): \(value)")
             }
@@ -40,160 +53,155 @@ class Game {
                 
                 switch character {
                     
-                    
-                case "1": print("Vous avez choisis un \(characterType[0])")
+                case "1" : print("Vous avez choisis un \(CharacterType.Fighter.rawValue)")
                 numberOfCharacter += 1
-                if playerIndex == 1 {
-                    characterTypesChoosenForPlayer1.append(characterType[0])
-                }else if playerIndex == 2{
-                    characterTypesChoosenForPlayer2.append(characterType[0])
-                }
-                print("Nommez votre \(characterType[0])")
+                
+                print("Nommez votre \(CharacterType.Fighter.rawValue)")
                 while let fighterPlayer = readLine() {
                     
-                    
-                    if playerIndex == 1 && !characterNamesChoosenForPlayer1.contains(fighterPlayer) && !characterNamesChoosenForPlayer2.contains(fighterPlayer){
-                        characterNamesChoosenForPlayer1.append(fighterPlayer)
-                        print("Votre \(characterType[0]) se nomme : \(fighterPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer1)")
-                        break
-                    }
+                    if !characterChoosenForPlayer1.contains(where: {$0.name == fighterPlayer} ) && !characterChoosenForPlayer2.contains(where: {$0.name == fighterPlayer} ){
+                        print("Votre \(CharacterType.Fighter.rawValue) se nomme : \(fighterPlayer)")
                         
-                    else if playerIndex == 2 && !characterNamesChoosenForPlayer2.contains(fighterPlayer) && !characterNamesChoosenForPlayer1.contains(fighterPlayer){
-                        characterNamesChoosenForPlayer2.append(fighterPlayer)
-                        print("Votre \(characterType[0]) se nomme : \(fighterPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer2)")
+                        if playerIndex == 1{
+                            
+                            characterChoosenForPlayer1.append(Character(name: fighterPlayer, type: .Fighter))
+                            
+                        }else if playerIndex == 2{
+                            
+                            characterChoosenForPlayer2.append(Character(name: fighterPlayer, type: .Fighter))
+                            
+                        }
                         break
                     }
-                    else {
-                        print("Ce nom existe déjà.")
-                    }
+                    print("Ce nom existe déjà.")
                     
                     print("Entrez un nouveau nom:")
+                    }
                     
-                }
-                characterType.remove(at: 0)
-                    
-                case "2": print("Vous avez choisis un \(characterType[1])")
+                case "2": print("Vous avez choisis un \(CharacterType.Dwarf.rawValue)")
                 numberOfCharacter += 1
-                if playerIndex == 1{
-                    characterTypesChoosenForPlayer1.append(characterType[1])
-                } else if playerIndex == 2{
-                    characterTypesChoosenForPlayer2.append(characterType[1])
-                }
-                print("Nommez votre \(characterType[1])")
+                
+                print("Nommez votre \(CharacterType.Dwarf.rawValue)")
                 while let dwarfPlayer = readLine() {
                     
-                    
-                    
-                    if playerIndex == 1 && !characterNamesChoosenForPlayer1.contains(dwarfPlayer) && !characterNamesChoosenForPlayer2.contains(dwarfPlayer){
-                        characterNamesChoosenForPlayer1.append(dwarfPlayer)
-                        print("Votre \(characterType[1]) se nomme : \(dwarfPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer1)")
-                        break
-                    }
+                    if !characterChoosenForPlayer1.contains(where: {$0.name == dwarfPlayer} ) && !characterChoosenForPlayer2.contains(where: {$0.name == dwarfPlayer} ){
+                        print("Votre \(CharacterType.Dwarf.rawValue) se nomme : \(dwarfPlayer)")
                         
-                    else if playerIndex == 2 && !characterNamesChoosenForPlayer2.contains(dwarfPlayer) && !characterNamesChoosenForPlayer1.contains(dwarfPlayer){
-                        characterNamesChoosenForPlayer2.append(dwarfPlayer)
-                        print("Votre \(characterType[1]) se nomme : \(dwarfPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer2)")
+                        if playerIndex == 1{
+                            
+                            characterChoosenForPlayer1.append(Character(name: dwarfPlayer, type: .Dwarf))
+                            
+                        }else if playerIndex == 2{
+                            
+                            characterChoosenForPlayer2.append(Character(name: dwarfPlayer, type: .Dwarf))
+                            
+                        }
                         break
                     }
-                    else {
-                        print("Ce nom existe déjà.")
-                    }
+                    print("Ce nom existe déjà.")
                     
                     print("Entrez un nouveau nom:")
+                    }
                     
-                }
-                
-                characterType.remove(at: 1)
-                    
-                case "3": print("Vous avez choisis un \(characterType[2])")
+                case "3": print("Vous avez choisis un \(CharacterType.Colossus.rawValue)")
                 numberOfCharacter += 1
-                if playerIndex == 1{
-                    characterTypesChoosenForPlayer1.append(characterType[2])
-                } else if playerIndex == 2{
-                    characterTypesChoosenForPlayer2.append(characterType[2])
-                }
-                print("Nommez votre \(characterType[2])")
+                
+                print("Nommez votre \(CharacterType.Colossus.rawValue)")
                 while let colossusPlayer = readLine() {
                     
-                    
-                    
-                    if playerIndex == 1 && !characterNamesChoosenForPlayer1.contains(colossusPlayer) && !characterNamesChoosenForPlayer2.contains(colossusPlayer){
-                        characterNamesChoosenForPlayer1.append(colossusPlayer)
-                        print("Votre \(characterType[2]) se nomme : \(colossusPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer1)")
-                        break
-                    }
+                    if !characterChoosenForPlayer1.contains(where: {$0.name == colossusPlayer} ) && !characterChoosenForPlayer2.contains(where: {$0.name == colossusPlayer} ){
+                        print("Votre \(CharacterType.Colossus.rawValue) se nomme : \(colossusPlayer)")
                         
-                    else if playerIndex == 2 && !characterNamesChoosenForPlayer2.contains(colossusPlayer) && !characterNamesChoosenForPlayer1.contains(colossusPlayer){
-                        characterNamesChoosenForPlayer2.append(colossusPlayer)
-                        print("Votre \(characterType[2]) se nomme : \(colossusPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer2)")
+                        if playerIndex == 1{
+                            
+                            characterChoosenForPlayer1.append(Character(name: colossusPlayer, type: .Colossus))
+                            
+                        }else if playerIndex == 2{
+                            
+                            characterChoosenForPlayer2.append(Character(name: colossusPlayer, type: .Colossus))
+                            
+                        }
                         break
                     }
-                    else {
-                        print("Ce nom existe déjà.")
-                    }
+                    print("Ce nom existe déjà.")
                     
                     print("Entrez un nouveau nom:")
+                    }
                     
-                }
-                characterType.remove(at: 2)
-                    
-                case "4": print("Vous avez choisis un \(characterType[3])")
+                case "4": print("Vous avez choisis un \(CharacterType.Magus.rawValue)")
                 numberOfCharacter += 1
-                if playerIndex == 1{
-                    characterTypesChoosenForPlayer1.append(characterType[3])
-                } else if playerIndex == 2{
-                    characterTypesChoosenForPlayer2.append(characterType[3])
-                }
-                print("Nommez votre \(characterType[3])")
+                print("Nommez votre \(CharacterType.Magus.rawValue)")
                 while let magusPlayer = readLine() {
                     
-                    
-                    
-                    if playerIndex == 1 && !characterNamesChoosenForPlayer1.contains(magusPlayer) && !characterNamesChoosenForPlayer2.contains(magusPlayer){
-                        characterNamesChoosenForPlayer1.append(magusPlayer)
-                        print("Votre \(characterType[3]) se nomme : \(magusPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer1)")
-                        break
-                    }
+                    if !characterChoosenForPlayer1.contains(where: {$0.name == magusPlayer} ) && !characterChoosenForPlayer2.contains(where: {$0.name == magusPlayer} ){
+                        print("Votre \(CharacterType.Magus.rawValue) se nomme : \(magusPlayer)")
                         
-                    else if playerIndex == 2 && !characterNamesChoosenForPlayer2.contains(magusPlayer) && !characterNamesChoosenForPlayer1.contains(magusPlayer){
-                        characterNamesChoosenForPlayer2.append(magusPlayer)
-                        print("Votre \(characterType[3]) se nomme : \(magusPlayer)")
-                        print("Vos personnages se nomment: \(characterNamesChoosenForPlayer2)")
+                        if playerIndex == 1{
+                            
+                            characterChoosenForPlayer1.append(Character(name: magusPlayer, type: .Magus))
+                            
+                        }else if playerIndex == 2{
+                            
+                            characterChoosenForPlayer2.append(Character(name: magusPlayer, type: .Magus))
+                            
+                        }
                         break
                     }
-                    else {
-                        print("Ce nom existe déjà.")
-                    }
+                    print("Ce nom existe déjà.")
                     
                     print("Entrez un nouveau nom:")
-                    
-                }
-                characterType.remove(at: 3)
+                    }
                     
                 default: print("Je ne comprends pas")
                     
                 }
-                
             }
             if numberOfCharacter < 3{
                 print("Choisissez un autre personnage:")
             }
-            
             if numberOfCharacter == 3 && playerIndex == 1{
-                print("Vous avez choisis vos 3 personnages: \(characterTypesChoosenForPlayer1), ils se nomment: \(characterNamesChoosenForPlayer1).")
+                print("Votre équipe est constituée de:")
+                for i in 0...[characterChoosenForPlayer1].count + 1{
+                    print("\(characterChoosenForPlayer1[i].name) de type \(characterChoosenForPlayer1[i].type.rawValue)")
+                }
             } else if numberOfCharacter == 3 && playerIndex == 2{
-                print("Vous avez choisis vos 3 personnages: \(characterTypesChoosenForPlayer2), ils se nomment: \(characterNamesChoosenForPlayer2).")
+                print("Votre équipe est constituée de:")
+                for i in 0...[characterChoosenForPlayer2].count + 1{
+                    print("\(characterChoosenForPlayer2[i].name) de type \(characterChoosenForPlayer1[i].type.rawValue)")
+                }
             }
-            
             
         } while numberOfCharacter < 3
     }
+    
+    func input() -> Int {
+        let strData = readLine();
+        
+        return Int(strData!)!
+    }
+    
+// The player chooses the characters he wants to play with
+    
+    func play(playerIndex: Int){
+        var assailantChoice: Int
+        var opponentChoice: Int
+        
+        repeat {
+            print("Choisissez votre assaillant:")
+            print("1. \(characterChoosenForPlayer1[0].name) de type \(characterChoosenForPlayer1[0].type)")
+            print("2. \(characterChoosenForPlayer1[1].name) de type \(characterChoosenForPlayer1[1].type)")
+            print("3. \(characterChoosenForPlayer1[2].name) de type \(characterChoosenForPlayer1[2].type)")
+            assailantChoice = input()
+        } while assailantChoice != 1 && assailantChoice != 2 && assailantChoice != 3
+        
+        print()
+        
+        repeat {
+            print("Choisissez votre opposant:")
+            print("1. \(characterChoosenForPlayer2[0].name) de type \(characterChoosenForPlayer2[0].type)")
+            print("2. \(characterChoosenForPlayer2[1].name) de type \(characterChoosenForPlayer2[1].type)")
+            print("3. \(characterChoosenForPlayer2[2].name) de type \(characterChoosenForPlayer2[2].type)")
+            opponentChoice = input()
+        } while opponentChoice != 1 && opponentChoice != 2 && opponentChoice != 3
+    }
 }
-
