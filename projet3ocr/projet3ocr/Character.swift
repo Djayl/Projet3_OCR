@@ -8,12 +8,11 @@
 
 import Foundation
 // Enumeration for the type of the characters
-// Enumeration for the type of the characters
 enum CharacterType : String {
-    case Dwarf = "Dwarf"
-    case Colossus = "Colossus"
-    case Magus = "Magus"
-    case Fighter = "Fighter"
+    case Dwarf = "Nain"
+    case Colossus = "Colosse"
+    case Magus = "Mage"
+    case Fighter = "Combattant"
 }
 
 // Creation of the class Character
@@ -25,6 +24,7 @@ class Character {
     var damage: Int
     var life: Int
     let name: String
+    
     
     init(name: String, type: CharacterType){
         self.type = type
@@ -56,15 +56,23 @@ class Character {
     // Creation of the attack function, one for all the characters
     
     func attack(opponent: Character){
-        opponent.life -= damage
-        print("\(type), vous attaquez le \(opponent.type)")
-        print("\(opponent.type), vous perdez \(damage) points de vie")
-        print("Votre vie est de \(opponent.life) points")
+        if life > 0 && opponent.life > 0 {
+            opponent.life -= damage
+            print("Vous avez attaqué \(opponent.name), \(opponent.name) a désormais \(opponent.life) de points de vie")
+        }
+        else {
+            if life <= 0 {
+                print("\(name) est mort. Choisissez un autre assaillant.")
+            }else if opponent.life <= 0 {
+                print("\(opponent.name) est mort. Choisissez un autre opposant.")
+            }
+        }
         
     }
     
+    
     func Healing(comrade: Character) {
-        if comrade.life > 0 && type == .Magus{
+        if comrade.life > 0 {
             comrade.life += cure
             print("Je vous guéris, votre vie est de \(comrade.life) points.")
         } else if comrade.life <= 0{
