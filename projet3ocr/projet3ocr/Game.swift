@@ -301,6 +301,7 @@ class Game {
                 fight(playerIndex: 2)
             }
         } while team1[0].life > 0 || team1[1].life > 0 || team1[2].life > 0 || team2[0].life > 0 || team2[1].life > 0 || team2[2].life > 0
+        
     }
     
     

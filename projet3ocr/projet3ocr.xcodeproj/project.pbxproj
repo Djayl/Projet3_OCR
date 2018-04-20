@@ -10,6 +10,11 @@
 		F01A159A20599A7100309B69 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A159920599A7100309B69 /* Character.swift */; };
 		F01A159C20599AE700309B69 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01A159B20599AE700309B69 /* Game.swift */; };
 		F026E6C1203DE60100405F0B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026E6C0203DE60100405F0B /* main.swift */; };
+		F02E0191208A23DC00673773 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E0190208A23DC00673773 /* Weapon.swift */; };
+		F02E0193208A240800673773 /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E0192208A240800673773 /* Sword.swift */; };
+		F02E0195208A242C00673773 /* Ax.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E0194208A242C00673773 /* Ax.swift */; };
+		F02E0197208A244B00673773 /* Mace.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E0196208A244B00673773 /* Mace.swift */; };
+		F02E0199208A246600673773 /* Wand.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E0198208A246600673773 /* Wand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +34,11 @@
 		F01A159B20599AE700309B69 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F026E6BD203DE60100405F0B /* projet3ocr */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = projet3ocr; sourceTree = BUILT_PRODUCTS_DIR; };
 		F026E6C0203DE60100405F0B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F02E0190208A23DC00673773 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		F02E0192208A240800673773 /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
+		F02E0194208A242C00673773 /* Ax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ax.swift; sourceTree = "<group>"; };
+		F02E0196208A244B00673773 /* Mace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mace.swift; sourceTree = "<group>"; };
+		F02E0198208A246600673773 /* Wand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,11 @@
 				F026E6C0203DE60100405F0B /* main.swift */,
 				F01A159920599A7100309B69 /* Character.swift */,
 				F01A159B20599AE700309B69 /* Game.swift */,
+				F02E0190208A23DC00673773 /* Weapon.swift */,
+				F02E0192208A240800673773 /* Sword.swift */,
+				F02E0194208A242C00673773 /* Ax.swift */,
+				F02E0196208A244B00673773 /* Mace.swift */,
+				F02E0198208A246600673773 /* Wand.swift */,
 			);
 			path = projet3ocr;
 			sourceTree = "<group>";
@@ -126,9 +141,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02E0193208A240800673773 /* Sword.swift in Sources */,
 				F026E6C1203DE60100405F0B /* main.swift in Sources */,
+				F02E0195208A242C00673773 /* Ax.swift in Sources */,
+				F02E0197208A244B00673773 /* Mace.swift in Sources */,
+				F02E0191208A23DC00673773 /* Weapon.swift in Sources */,
 				F01A159C20599AE700309B69 /* Game.swift in Sources */,
 				F01A159A20599A7100309B69 /* Character.swift in Sources */,
+				F02E0199208A246600673773 /* Wand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
