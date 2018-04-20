@@ -61,10 +61,12 @@ class Character {
     
     func attack(opponent: Character){
         opponent.life -= weapon.damage
-        print("Vous avez attaqué \(opponent.name), \(opponent.name) a désormais \(opponent.life) de points de vie")
+        
         if opponent.life < 0 {
             opponent.life = 0
         }
+        print("Vous avez attaqué \(opponent.name), \(opponent.name) a désormais \(opponent.life) de points de vie")
+        
         // Retour au niveau de dommage initial
         
         
