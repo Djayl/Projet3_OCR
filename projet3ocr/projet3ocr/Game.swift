@@ -44,7 +44,15 @@ class Game {
             }
         }
         
-        print("Choisissez vos personnages:")
+        print("Choisissez vos personnages:"
+            + "\n Le combattant est un excellent guerrier. Rapide et puissant, il est armé d'une épée qui fera perdre à votre adversaire 10 points de vie à chaque coup. Son niveau de vie de départ est de 100 points."
+            
+            + "\n Le Colosse est un guerrier légendaire. Imposant et très résistant, son niveau de vie de départ est de 150 points. Cependant, la massue dont il est armé n'infligera que 5 points de dégâts à votre adversaire."
+            
+            + "\n Le nain est un guerrier redoutable. Particulièrement puissant, sa hache est redoutée par tous. Elle ôtera 25 points de vie à votre adversaire. Son point faible? Sa faible résistance. En effet, il ne part qu'avec 50 points de vie."
+            
+            + "\n Le mage n'a rien d'un guerrier. Son talent: guérir ses camarades. Choisissez-le et vous pourrez redonner 10 points de vie à l'un des membres de votre équipe. Mais souvenez-vous! Il n'a rien d'un guerrier et son niveau de vie n'est que de 50 points.")
+        
         // The loop works as long as three characters are not selected and it breaks when a name already exists in an array.
         repeat {
             
@@ -178,29 +186,42 @@ class Game {
         } while numberOfCharacter < 3
     }
     
+    func random() {
+        let randomNumber = Int(arc4random_uniform(2))
+        if randomNumber == 1 {
+            print("Félicitations \(String(describing: assailant?.name)), vous recevez le coffre de la gloire! Il contient l'arme de la destruction. Votre adversaire n'a aucune chance!")
+            assailant?.weapon.damage += 30
+        }
+        
+    }
+    
     func input() -> Int {
         let strData = readLine();
+        
         return Int(strData!)!
+        
     }
+    
     // The player chooses an assailant for the attack
     func chooseAssailant(in team: [Character])-> Character?{
         var key : Int = -1
         repeat{
             print("Choisissez votre assaillant en tapant un chiffre:")
-            print("1. \(team[0].name) de type \(team[0].type)")
-            print("2. \(team[1].name) de type \(team[1].type)")
-            print("3. \(team[2].name) de type \(team[2].type)")
+            print("1. \(team[0].name) de type \(team[0].type). Niveau de vie: \(team[0].life). Force d'attaque: \(team[0].weapon.damage)")
+            print("2. \(team[1].name) de type \(team[1].type). Niveau de vie: \(team[1].life). Force d'attaque: \(team[1].weapon.damage)")
+            print("3. \(team[2].name) de type \(team[2].type). Niveau de vie: \(team[2].life). Force d'attaque: \(team[2].weapon.damage)")
             key = input()
         }while key != 1 && key != 2 && key != 3
         let assailantChoice = String(key)
         print(key)
         var assailant: Character?
         switch assailantChoice {
-        case "1": assailant = team[0]
+        case "1":assailant = team[0]
         case "2":assailant = team[1]
         case "3":assailant = team[2]
         default: break
         }
+        
         return assailant
     }
     
@@ -209,19 +230,20 @@ class Game {
         var key : Int = -1
         repeat{
             print("Choisissez votre opposant en tapant un chiffre:")
-            print("1. \(team[0].name) de type \(team[0].type)")
-            print("2. \(team[1].name) de type \(team[1].type)")
-            print("3. \(team[2].name) de type \(team[2].type)")
+            print("1. \(team[0].name) de type \(team[0].type). Niveau de vie: \(team[0].life). Force d'attaque: \(team[0].weapon.damage)")
+            print("2. \(team[1].name) de type \(team[1].type). Niveau de vie: \(team[1].life). Force d'attaque: \(team[1].weapon.damage)")
+            print("3. \(team[2].name) de type \(team[2].type). Niveau de vie: \(team[2].life). Force d'attaque: \(team[2].weapon.damage)")
             key = input()
         }while key != 1 && key != 2 && key != 3
         let opponentChoice = String(key)
         var opponent: Character?
-        switch opponentChoice {
+        switch opponentChoice{
         case "1": opponent = team[0]
         case "2":opponent = team[1]
         case "3":opponent = team[2]
         default: break
         }
+        
         return opponent
     }
     
@@ -229,9 +251,9 @@ class Game {
         var key : Int = -1
         repeat{
             print("Choisissez votre camarade à guérir en tapant un chiffre:")
-            print("1. \(team[0].name) de type \(team[0].type)")
-            print("2. \(team[1].name) de type \(team[1].type)")
-            print("3. \(team[2].name) de type \(team[2].type)")
+            print("1. \(team[0].name) de type \(team[0].type). Niveau de vie: \(team[0].life). Force d'attaque: \(team[0].weapon.damage)")
+            print("2. \(team[1].name) de type \(team[1].type). Niveau de vie: \(team[1].life). Force d'attaque: \(team[1].weapon.damage)")
+            print("3. \(team[2].name) de type \(team[2].type). Niveau de vie: \(team[2].life). Force d'attaque: \(team[2].weapon.damage)")
             key = input()
         }while key != 1 && key != 2 && key != 3
         let comradeChoice = String(key)
@@ -243,7 +265,8 @@ class Game {
             case "3": comrade = team[2]
             default: break
             }
-        } while comrade?.type == CharacterType.Magus
+            
+        } while comrade?.type == CharacterType.Magus && (comrade?.life)! <= 0
         if comrade?.type == CharacterType.Magus{
             print("Choisis un autre perso")
         }
@@ -259,7 +282,9 @@ class Game {
         else {
             assailant = chooseAssailant(in: team2)
         }
-        print("\(String(describing: assailant?.name))")
+        
+        print("Vous avez choisis: \(String(describing: assailant?.name))")
+        
         
         if playerIndex == 1 && assailant?.type != CharacterType.Magus {
             opponent = chooseOpponent(in: team2)
@@ -267,40 +292,71 @@ class Game {
         else if playerIndex == 2 && assailant?.type != CharacterType.Magus{
             opponent = chooseOpponent(in: team1)
         }
-        print("\(String(describing: opponent?.name))")
+        print("Vous avez choisis: \(String(describing: opponent?.name))")
         
         if playerIndex == 1 && assailant?.type == CharacterType.Magus{
             comrade = chooseComrade(in: team1)
         } else if playerIndex == 2 && assailant?.type == CharacterType.Magus{
             comrade = chooseComrade(in: team2)
         }
-        print("\(String(describing: comrade?.name))")
+        print("Vous avez choisis: \(String(describing: comrade?.name))")
         
     }
     
     func fight(playerIndex: Int){
+        
         if assailant?.type != CharacterType.Magus {
             assailant?.attack(opponent: opponent!)
+            
         }
         else {
             assailant?.Healing(comrade: comrade!)
+        }
+        
+    }
+    func dead(){
+        if team1[0].life <= 0 {
+            team1.remove(at: 0)
+        } else if team1[1].life <= 0 {
+            team1.remove(at: 1)
+        } else if team1[2].life <= 0 {
+            team1.remove(at: 2)
+        }
+        if team2[0].life <= 0 {
+            team2.remove(at: 0)
+        } else if team2[1].life <= 0 {
+            team2.remove(at: 1)
+        } else if team2[2].life <= 0 {
+            team2.remove(at: 2)
         }
     }
     
     func runGame(playerIndex: Int){
         repeat {
-            if team1[0].life > 0 || team1[1].life > 0 || team1[2].life > 0{
-                print("Joueur 1 à toi de jouer:")
-                play(playerIndex: 1)
-                fight(playerIndex: 1)
-            }
             
-            if team2[0].life > 0 || team2[1].life > 0 || team2[2].life > 0{
-                print("Joueur 2 à toi de jouer:")
-                play(playerIndex: 2)
-                fight(playerIndex: 2)
+            print("Joueur 1 à toi de jouer:")
+            play(playerIndex: 1)
+            fight(playerIndex: 1)
+            
+            
+            print("Joueur 2 à toi de jouer:")
+            play(playerIndex: 2)
+            fight(playerIndex: 2)
+            
+            
+            
+            if team1[0].life <= 0 && team1[1].life <= 0 && team1[2].life <= 0 {
+                print(" \(player2Name) a gagné")
+                
             }
-        } while team1[0].life > 0 || team1[1].life > 0 || team1[2].life > 0 || team2[0].life > 0 || team2[1].life > 0 || team2[2].life > 0
+                
+            else if team2[0].life <= 0 && team2[1].life <= 0 && team2[2].life <= 0 {
+                print(" \(player1Name) a gagné")
+                
+            }
+            break
+        } while (team1[0].life > 0 || team1[1].life > 0 || team1[2].life > 0) && (team2[0].life > 0 || team2[1].life > 0 || team2[2].life > 0)
+        
         
     }
     

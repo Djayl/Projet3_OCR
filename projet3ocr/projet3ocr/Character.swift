@@ -21,7 +21,7 @@ class Character {
     
     var cure: Int
     var type: CharacterType
-    var damage: Int
+    var weapon: Weapon
     var life: Int
     let name: String
     
@@ -32,41 +32,41 @@ class Character {
         
         switch self.type {
         case .Fighter:
-            self.life = 100
-            self.damage = 10
+            self.life = 20
+            self.weapon = Sword()
             self.cure = 0
+           
             
         case .Colossus:
-            self.life = 150
-            self.damage = 5
+            self.life = 20
+            self.weapon = Mace()
             self.cure = 0
+           
+            
         case .Dwarf:
-            self.life = 50
-            self.damage = 25
+            self.life = 20
+            self.weapon = Ax()
             self.cure = 0
+            
+        
         case .Magus:
             self.life = 50
-            self.damage = 0
+            self.weapon = Wand()
             self.cure = 10
             
         }
     }
     
-    
     // Creation of the attack function, one for all the characters
     
     func attack(opponent: Character){
-        if life > 0 && opponent.life > 0 {
-            opponent.life -= damage
-            print("Vous avez attaqué \(opponent.name), \(opponent.name) a désormais \(opponent.life) de points de vie")
+        opponent.life -= weapon.damage
+        print("Vous avez attaqué \(opponent.name), \(opponent.name) a désormais \(opponent.life) de points de vie")
+        if opponent.life < 0 {
+            opponent.life = 0
         }
-        else {
-            if life <= 0 {
-                print("\(name) est mort. Choisissez un autre assaillant.")
-            }else if opponent.life <= 0 {
-                print("\(opponent.name) est mort. Choisissez un autre opposant.")
-            }
-        }
+        // Retour au niveau de dommage initial
+        
         
     }
     
@@ -83,3 +83,4 @@ class Character {
         
     }
 }
+
