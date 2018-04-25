@@ -19,12 +19,12 @@ enum CharacterType : String {
 
 class Character {
     
-    var cure: Int
+   
     var type: CharacterType
     var weapon: Weapon
     var life: Int
     let name: String
-    
+    var chest: Weapon
     
     init(name: String, type: CharacterType){
         self.type = type
@@ -34,26 +34,22 @@ class Character {
         case .Fighter:
             self.life = 20
             self.weapon = Sword()
-            self.cure = 0
-           
+            self.chest = NewWeapon()
             
         case .Colossus:
             self.life = 20
             self.weapon = Mace()
-            self.cure = 0
-           
+            self.chest = NewWeapon()
             
         case .Dwarf:
             self.life = 20
             self.weapon = Ax()
-            self.cure = 0
+            self.chest = NewWeapon()
             
-        
         case .Magus:
             self.life = 50
             self.weapon = Wand()
-            self.cure = 10
-            
+            self.chest = NewWeapon()
         }
     }
     
@@ -75,7 +71,7 @@ class Character {
     
     func Healing(comrade: Character) {
         if comrade.life > 0 {
-            comrade.life += cure
+            comrade.life -= weapon.damage
             print("Je vous guéris, votre vie est de \(comrade.life) points.")
         } else if comrade.life <= 0{
             print("Vous êtes mort, je ne peux pas vous réanimer.")
