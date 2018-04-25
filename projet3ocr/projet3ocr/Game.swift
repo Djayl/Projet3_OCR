@@ -204,75 +204,99 @@ class Game {
     
     // The player chooses an assailant for the attack
     func chooseAssailant(in team: [Character])-> Character?{
-        var key : Int = -1
+        
+        var assailant: Character?
+        var validChoice = false
         repeat{
             print("Choisissez votre assaillant en tapant un chiffre:")
-            print("1. \(team[0].name) de type \(team[0].type). Niveau de vie: \(team[0].life). Force d'attaque: \(team[0].weapon.damage)")
-            print("2. \(team[1].name) de type \(team[1].type). Niveau de vie: \(team[1].life). Force d'attaque: \(team[1].weapon.damage)")
-            print("3. \(team[2].name) de type \(team[2].type). Niveau de vie: \(team[2].life). Force d'attaque: \(team[2].weapon.damage)")
-            key = input()
-        }while key != 1 && key != 2 && key != 3
-        let assailantChoice = String(key)
-        print(key)
-        var assailant: Character?
-        switch assailantChoice {
-        case "1":assailant = team[0]
-        case "2":assailant = team[1]
-        case "3":assailant = team[2]
-        default: break
-        }
+            for i in 0...[team].count + 1{
+                if team[i].life > 0 {
+                    print("\(i). \(team[i].name) de type \(team[i].type.rawValue). Points de vie: \(team[i].life). Points d'attaque: \(team[i].weapon.damage)")
+                }
+            }
+            if let assailantChoice = readLine(){
+                
+                
+                switch assailantChoice {
+                case "0": assailant = team[0]
+                validChoice = true
+                    
+                case "1":assailant = team[1]
+                validChoice = true
+                case "2":assailant = team[2]
+                validChoice = true
+                default: print("Entrez un chiffre valide")
+                }
+                
+            }
+        }while validChoice == false
         
         return assailant
+        
     }
     
     // The player chooses an opponent to attack
     func chooseOpponent(in team: [Character])-> Character?{
-        var key : Int = -1
-        repeat{
-            print("Choisissez votre opposant en tapant un chiffre:")
-            print("1. \(team[0].name) de type \(team[0].type). Niveau de vie: \(team[0].life). Force d'attaque: \(team[0].weapon.damage)")
-            print("2. \(team[1].name) de type \(team[1].type). Niveau de vie: \(team[1].life). Force d'attaque: \(team[1].weapon.damage)")
-            print("3. \(team[2].name) de type \(team[2].type). Niveau de vie: \(team[2].life). Force d'attaque: \(team[2].weapon.damage)")
-            key = input()
-        }while key != 1 && key != 2 && key != 3
-        let opponentChoice = String(key)
+        var validChoice = false
         var opponent: Character?
-        switch opponentChoice{
-        case "1": opponent = team[0]
-        case "2":opponent = team[1]
-        case "3":opponent = team[2]
-        default: break
-        }
+        
+        repeat{
+            print("Choisissez un opposant en tapant un chiffre:")
+            for i in 0...[team].count + 1 {
+                if team[i].life > 0 {
+                    print("\(i). \(team[i].name) de type \(team[i].type.rawValue). Points de vie: \(team[i].life). Points d'attaque: \(team[i].weapon.damage)")
+                }
+            }
+            
+            if let opponentChoice = readLine(){
+                
+                switch opponentChoice{
+                case "0":opponent = team[0]
+                validChoice = true
+                case "1":opponent = team[1]
+                validChoice = true
+                case "2":opponent = team[2]
+                validChoice = true
+                default: print("Entrez un chiffre valide")
+                }
+            }
+        }while validChoice == false
         
         return opponent
     }
     
     func chooseComrade(in team: [Character])-> Character?{
-        var key : Int = -1
-        repeat{
-            print("Choisissez votre camarade à guérir en tapant un chiffre:")
-            print("1. \(team[0].name) de type \(team[0].type). Niveau de vie: \(team[0].life). Force d'attaque: \(team[0].weapon.damage)")
-            print("2. \(team[1].name) de type \(team[1].type). Niveau de vie: \(team[1].life). Force d'attaque: \(team[1].weapon.damage)")
-            print("3. \(team[2].name) de type \(team[2].type). Niveau de vie: \(team[2].life). Force d'attaque: \(team[2].weapon.damage)")
-            key = input()
-        }while key != 1 && key != 2 && key != 3
-        let comradeChoice = String(key)
+        var validChoice = false
         var comrade: Character?
         repeat{
-            switch comradeChoice {
-            case "1": comrade = team[0]
-            case "2": comrade = team[1]
-            case "3": comrade = team[2]
-            default: break
+            print("Choisissez votre camarade à guérir en tapant un chiffre:")
+            for i in 0...[team].count + 1{
+                if team[i].life > 0{
+                    
+                    print("\(i+1). \(team[i].name) de type \(team[i].type.rawValue). Points de vie: \(team[i].life). Points d'attaque: \(team[i].weapon.damage)")
+                }
             }
             
-        } while comrade?.type == CharacterType.Magus && (comrade?.life)! <= 0
-        if comrade?.type == CharacterType.Magus{
-            print("Choisis un autre perso")
-        }
+            if let comradeChoice = readLine() {
+                
+                switch comradeChoice {
+                case "1": comrade = team[0]
+                validChoice = true
+                case "2": comrade = team[1]
+                validChoice = true
+                case "3": comrade = team[2]
+                validChoice = true
+                default: print("Entrez un chiffre valide")
+                }
+                
+            }
+            if comrade?.type == CharacterType.Magus{
+                print("Choisis un autre perso")
+            }
+        } while validChoice == false && comrade?.type == CharacterType.Magus && (comrade?.life)! == 0
+        
         return comrade
     }
-    
     func play(playerIndex: Int){
         
         
@@ -314,22 +338,17 @@ class Game {
         }
         
     }
-    func dead(){
-        if team1[0].life <= 0 {
-            team1.remove(at: 0)
-        } else if team1[1].life <= 0 {
-            team1.remove(at: 1)
-        } else if team1[2].life <= 0 {
-            team1.remove(at: 2)
+    func dead(in team: [Character]){
+        var i = 0
+        var team = team
+        for characters in team {
+            if characters.life <= 0 {
+                print("mon index est : \(i) et son nom est \(characters.name)")
+                team.remove(at: i)
+                print("\(characters.name) est mort")
+            }
+            i += 1
         }
-        if team2[0].life <= 0 {
-            team2.remove(at: 0)
-        } else if team2[1].life <= 0 {
-            team2.remove(at: 1)
-        } else if team2[2].life <= 0 {
-            team2.remove(at: 2)
-        }
-    }
     
     func runGame(playerIndex: Int){
         repeat {
@@ -345,12 +364,12 @@ class Game {
             
             
             
-            if team1[0].life <= 0 && team1[1].life <= 0 && team1[2].life <= 0 {
+            if team1[0].life == 0 && team1[1].life == 0 && team1[2].life == 0 {
                 print(" \(player2Name) a gagné")
                 
             }
                 
-            else if team2[0].life <= 0 && team2[1].life <= 0 && team2[2].life <= 0 {
+            else if team2[0].life == 0 && team2[1].life == 0 && team2[2].life == 0 {
                 print(" \(player1Name) a gagné")
                 
             }
@@ -362,4 +381,4 @@ class Game {
     
     
 }
-
+}
